@@ -3,54 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akte Natters: Der Agrar-Report</title>
+    <title>Akte Natters: Der Agrar-Report v0.3</title>
     <style>
-        /* Modernes, dunkles "Investigativ"-Design - Einspaltiges Layout */
         body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
             background-color: #121212;
             color: #e0e0e0;
-            overflow: auto;
-        }
-
-        /* Hauptinhalt: Story oben */
-        .story-pane {
-            width: 100%;
-            padding: 40px;
-            box-sizing: border-box;
             line-height: 1.6;
-            border-bottom: 2px solid #2a2a2a;
-            background: linear-gradient(180deg, rgba(18,18,18,0.98), rgba(26,26,26,0.98));
+            display: block;
         }
 
-        /* Dokumenten-Viewer: unterhalb der Story, vollbreit */
-        .document-pane {
-            width: 100%;
-            height: 60vh; /* größe des Viewers, kann bei Bedarf angepasst werden */
-            background-color: #1a1a1a;
+        .main-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 25px;
             box-sizing: border-box;
         }
 
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            background-color: #1a1a1a;
+        h1 {
+            color: #ff4d4d;
+            font-size: 24px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #2a2a2a;
+            padding-bottom: 10px;
         }
 
-        /* Styling für Überschriften und Text */
-        h1 { color: #ff4d4d; font-size: 28px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
-        h2 { color: #ffffff; font-size: 20px; margin-top: 30px; border-bottom: 1px solid #333; padding-bottom: 5px; }
-        p { font-size: 15px; color: #cccccc; }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 12px; font-size: 15px; }
-        
-        /* Teaser Box */
+        h2 {
+            color: #ffffff;
+            font-size: 19px;
+            margin-top: 35px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+
+        p {
+            font-size: 15px;
+            color: #cccccc;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
         .teaser-box {
             background-color: #242424;
             border-left: 4px solid #3399ff;
@@ -59,135 +62,138 @@
             font-size: 15px;
             font-style: italic;
             color: #ffffff;
+            border-radius: 0 4px 4px 0;
         }
 
-        /* Die magischen Beweis-Links */
         .evidence-link {
             color: #3399ff;
             text-decoration: none;
             border-bottom: 1px dashed #3399ff;
             font-weight: bold;
             transition: all 0.3s ease;
-        }
-        .evidence-link:hover {
-            color: #ff4d4d;
-            border-bottom: 1px solid #ff4d4d;
-            background-color: rgba(255, 77, 77, 0.1);
-            padding: 2px 4px;
-            border-radius: 4px;
-        }
-
-        /* Versteckter Inhalt */
-        .hidden-content {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        .hidden-content.show {
-            display: block;
-            opacity: 1;
-        }
-
-        /* Schlichter Text-Link für "mehr lesen" */
-        .toggle-link {
-            color: #3399ff;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
             display: inline-block;
-            margin: 10px 0 20px 0;
-            transition: color 0.2s ease;
-        }
-        .toggle-link:hover {
-            color: #ff4d4d;
-            text-decoration: underline;
+            margin-top: 4px;
         }
 
-        /* Responsive: auf kleineren Bildschirmen den Viewer höher darstellen */
-        @media (max-width: 768px) {
-            .document-pane { height: 50vh; }
-            h1 { font-size: 22px; }
+            .evidence-link:hover {
+                color: #ff4d4d;
+                border-bottom: 1px solid #ff4d4d;
+                background-color: rgba(255, 77, 77, 0.1);
+                padding: 0 4px;
+                border-radius: 4px;
+            }
+
+        details.read-more {
+            margin: 15px 0;
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 5px 12px;
+        }
+
+            details.read-more summary {
+                color: #3399ff;
+                font-weight: bold;
+                cursor: pointer;
+                outline: none;
+                user-select: none;
+                font-size: 14px;
+            }
+
+                details.read-more summary:hover {
+                    color: #ff4d4d;
+                }
+
+            details.read-more[open] {
+                background-color: #1c1c1c;
+                border-color: #444;
+            }
+
+                details.read-more[open] summary {
+                    margin-bottom: 10px;
+                    border-bottom: 1px dashed #444;
+                    padding-bottom: 5px;
+                }
+
+        /* Tablet und PC Optimierungen */
+        @media (min-width: 768px) {
+            .main-container {
+                padding: 40px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 21px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- EINSPALTIGER SCREEN: DIE GESCHICHTE -->
-    <div class="story-pane">
-        <h1>Natters: Wenn Aufklärung verhindert und Fehlverhalten belohnt wird</h1>
-        
+    <div class="main-container">
+        <h1>Natters: Wenn Aufklärung verhindert und Fehlverhalten belohnt wird Version 0.3</h1>
+
         <div class="teaser-box">
-            In Natters geht es längst nicht mehr um einen gewöhnlichen politischen Konflikt. Es geht um Gemeindevermögen, um verschwundene Erlöse, um offene Deponiegebühren, um nicht zugeführte [...]
+            In Natters geht es längst nicht mehr um einen gewöhnlichen politischen Konflikt. Es geht um Gemeindevermögen, um verschwundene Erlöse, um offene Deponiegebühren, um nicht zugeführte Fördermittel – und um politische Entscheidungen, die mehr Fragen aufwerfen, als sie beantworten.
         </div>
 
-        <!-- Schlichter Link statt des Buttons -->
-        <span class="toggle-link" id="read-more-link" onclick="toggleReport()">mehr lesen</span>
+        <p>Seit der rechtskräftigen Einstufung der Agrargemeinschaft Natters als Gemeindegutsagrargemeinschaft war klar: Wesentliche Einnahmen aus Wald, Schottergrube und Grundstücken stehen überwiegend der Gemeinde zu. Umso schwerer wiegen die Vorgänge, die in den letzten Jahren offengelegt wurden: Erlöse aus Holzverkäufen kamen offenbar nur zu einem geringen Teil dort an, wo sie hingehörten, während gleichzeitig andere Projekte finanziert wurden, ohne die Gemeinde entsprechend einzubinden.</p>
 
-        <!-- Dieser Container umschließt alle Elemente, die anfangs unsichtbar sind -->
-        <div id="extended-report" class="hidden-content">
-            <p>Seit der rechtskräftigen Einstufung der Agrargemeinschaft Natters als Gemeindegutsagrargemeinschaft war klar: Wesentliche Einnahmen aus Wald, Schottergrube und Grundstücken stehen üb[...]
+        <!-- MEHR LESEN BLOCK 1 -->
+        <details class="read-more">
+            <summary>📖 Mehr zum Hintergrund lesen</summary>
+            <p>Hinzu kommen offene Fragen rund um nicht bezahlte Deponiegebühren, nicht ordnungsgemäß zugeführte Fördermittel und politische Beschlüsse, die nicht nach Aufklärung, sondern nach Schonung der Verantwortlichen wirken. Besonders brisant ist dabei, dass ausgerechnet jene Personen, die diese Missstände aufgezeigt haben, politisch unter Druck gerieten.</p>
+            <p>Der Beschluss vom Mai 2026 markiert für viele den Tiefpunkt: Statt Konsequenzen zu ziehen, wurde ein Signal gesetzt, das in Natters als Belohnung für Fehlverhalten verstanden werden muss. Genau deshalb braucht diese Causa volle Öffentlichkeit. Die nachfolgenden Unterlagen zeigen, worum es wirklich geht.</p>
+        </details>
 
-            <p>Hinzu kommen offene Fragen rund um nicht bezahlte Deponiegebühren, nicht ordnungsgemäß zugeführte Fördermittel und politische Beschlüsse, die nicht nach Aufklärung, sondern nach [...]
+        <h2>Die dokumentierten Fälle & Missstände:</h2>
+        <ul>
+            <li>
+                <strong>Die Jahre 2016 und 2017:</strong> In den Abrechnungen fehlen der Gemeinde rund 90.000 Euro aus den Holzverkäufen des Überlings.
+                <br><a class="evidence-link" href="fall_2016_2017.html" target="_self">→ Detailanalyse & Beweise 2016/2017 öffnen</a>
+            </li>
+            <li>
+                <strong>Ab 2018 (Hackschnitzelverträge):</strong> Aufgrund mehrdeutig gestalteter Hackschnitzelverträge erwirtschaftet die Gemeinde Verluste aus der Holzbewirtschaftung, während Gewinne an die Mitglieder fließen.
+                <br><a class="evidence-link" href="akten.html#hackschnitzelvertrag" target="_self">→ § 4 des Hackschnitzelvertrags öffnen</a>
+            </li>
+            <li>
+                <strong>Fördergelder:</strong> Obwohl die Gemeinde die Kosten für die Bewirtschaftung des Gemeindewaldes trägt, wurden forstwirtschaftliche Förderungen auf ein privates Konto der Mitglieder überwiesen.
+                <br><a class="evidence-link" href="akten.html#foerderkonto" target="_self">→ Bankbeleg der Förderüberweisung einsehen</a>
+            </li>
+            <li>
+                <strong>Deponiegebühren:</strong> Die Mitglieder der GGAG haben sich seit 2011 unrechtmäßig von den regulären Deponiegebühren befreit.
+                <br><a class="evidence-link" href="akten.html#deponie_beschluss" target="_self">→ Protokoll zur Gebührenbefreiung 2011 aufrufen</a>
+            </li>
+        </ul>
 
-            <p>Der Beschluss vom Mai 2026 markiert für viele den Tiefpunkt: Statt Konsequenzen zu ziehen, wurde ein Signal gesetzt, das in Natters als Belohnung für Fehlverhalten verstanden werden m[...]
-            
-            <h2>Die dokumentierten Fälle & Missstände:</h2>
-            <ul>
-                <li><strong>Die Jahre 2016 und 2017:</strong> In den Abrechnungen fehlen der Gemeinde rund 90.000 Euro aus den Holzverkäufen des Überlings.
-                    <a class="evidence-link" href="fall_2016_2017.html" target="doc-viewer">→ Detailanalyse & Beweise 2016/2017 öffnen</a>
-                </li>
-                <li><strong>Ab 2018 (Hackschnitzelverträge):</strong> Aufgrund mehrdeutig gestalteter Hackschnitzelverträge erwirtschaftet die Gemeinde Verluste aus der Holzbewirtschaftung, während[...]
-                    <a class="evidence-link" href="akten.html#hackschnitzelvertrag" target="doc-viewer">→ Hackschnitzelverträge öffnen</a>
-                </li>
-                <li><strong>Fördergelder:</strong> Obwohl die Gemeinde die Kosten für die Bewirtschaftung des Gemeindewaldes trägt, wurden forstwirtschaftliche Förderungen auf das Konto der Mitgli[...]
-                    <a class="evidence-link" href="akten.html#foerderkonto" target="doc-viewer">→ Bankbeleg der Förderüberweisung einsehen</a>
-                </li>
-                <li><strong>Deponiegebühren:</strong> Die Mitglieder der GGAG haben sich seit 2011 unrechtmäßig von den regulären Deponiegebühren befreit.
-                    <a class="evidence-link" href="akten.html#deponie_beschluss" target="doc-viewer">→ Protokoll zur Gebührenbefreiung 2011 aufrufen</a>
-                </li>
-            </ul>
+        <h2>Der politische Konflikt</h2>
+        <p>
+            Der im Jahr 2022 mit 7:6 Stimmen gewählten Substanzverwalterin DI Anna Koch sind diese Missstände aufgefallen. Anstatt sie bei der Aufklärung zu unterstützen, wurde sie im Jahr 2023 vom Gemeinderat ebenfalls mit 7:6 Stimmen abgewählt, insbesondere weil die Substanzverwalter-Stellvertreterin von der Grünen Liste eine weitere Zusammenarbeit mit ihr kategorisch ausgeschlossen hat.
+            <br><a class="evidence-link" href="akten.html#abwahl_protokoll" target="_self">→ Gemeinderatsprotokoll zur Abwahl ansehen</a>
+        </p>
 
-            <h2>Der politische Konflikt</h2>
-            <p>Der im Jahr 2022 mit 7:6 Stimmen gewählten Substanzverwalterin DI Anna Koch sind diese Missstände aufgefallen. Anstatt sie bei der Aufklärung zu unterstützen, wurde sie im Jahr 2023[...]
-                <a class="evidence-link" href="akten.html#abwahl_protokoll" target="doc-viewer">→ Gemeinderatsprotokoll zur Abwahl ansehen</a>
+        <!-- MEHR LESEN BLOCK 2 -->
+        <details class="read-more">
+            <summary>📖 Mehr zum politischen Verlauf lesen</summary>
+            <p>Anschließend wurde der Bürgermeister Ing. Marco Mösl zum neuen Substanzverwalter gewählt. Er kündigte an, alle Missstände mithilfe eines von ihm geleiteten Arbeitskreises transparent aufzuklären.</p>
+            <p>
+                Der Arbeitskreis beendete seine Tätigkeit jedoch bereits in der fünften Sitzung am 21. Mai 2024, ohne sich mit den einzelnen Missständen im Detail auseinanderzusetzen. Der anschließend verfasste Endbericht enthält nachweislich unzutreffende Aussagen und wurde im Februar 2025 auf der Homepage der Gemeinde veröffentlicht.
+                <br><a class="evidence-link" href="akten.html#endbericht_seite5" target="_self">→ Zum umstrittenen Endbericht (Feb. 2025)</a>
             </p>
-            
-            <p>Anschließend wurde der Bürgermeister Ing. Marco Mösl zum neuen Substanzverwalter gewählt. Er kündigte an, alle Missstände mithilfe eines von ihm geleiteten Arbeitskreises transpar[...]
-            <p>Der Arbeitskreis beendete seine Tätigkeit jedoch bereits in der fünften Sitzung am 21. Mai 2024, ohne sich mit den einzelnen Missständen im Detail auseinanderzusetzen. Der anschließ[...]
-                <a class="evidence-link" href="akten.html#endbericht_seite5" target="doc-viewer">→ Zum umstrittenen Endbericht (Feb. 2025)</a>
+
+            <p>
+                Am 28. Mai 2025 forderten sieben Mitglieder der Bürger:innenliste den Bürgermeister ultimativ auf, die festgestellten Missstände aufzuklären.
+                <br><a class="evidence-link" href="akten.html#ultimatum_brief" target="_self">→ Das Ultimatum-Schreiben im Wortlaut</a>
             </p>
-            
-            <p>Am 28. Mai 2025 forderten sieben Mitglieder der Bürger:innenliste den Bürgermeister ultimativ auf, die festgestellten Missstände aufzuklären. 
-                <a class="evidence-link" href="akten.html#ultimatum_brief" target="doc-viewer">→ Das Ultimatum-Schreiben im Wortlaut</a>
+
+            <p>
+                Da eine entsprechende Aufarbeitung weiterhin ausblieb, wurde im Dezember 2025 Univ.-Prof. i.R. Dr. Andreas Scheil ersucht, die Untätigkeit des Bürgermeisters bei der Staatsanwaltschaft Innsbruck zur Anzeige zu bringen.
+                <br><a class="evidence-link" href="akten.html#strafanzeige" target="_self">→ Deckblatt der Sachverhaltsdarstellung an die StA</a>
             </p>
-            
-            <p>Da eine entsprechende Aufarbeitung weiterhin ausblieb, wurde im Dezember 2025 Univ.-Prof. i.R. Dr. Andreas Scheil ersucht, die Untätigkeit des Bürgermeisters bei der Staatsanwaltschaf[...]
-                <a class="evidence-link" href="akten.html#strafanzeige" target="doc-viewer">→ Deckblatt der Sachverhaltsdarstellung an die StA</a>
-            </p>
-        </div>
+        </details>
     </div>
-
-    <!-- DOKUMENTEN-FENSTER (IFRAME) UNTERHALB -->
-    <div class="document-pane">
-        <iframe name="doc-viewer" src="einstieg.html" title="Dokumenten-Viewer"></iframe>
-    </div>
-
-    <!-- Kleines Steuerungsskript für die Einblendung -->
-    <script>
-        function toggleReport() {
-            var content = document.getElementById("extended-report");
-            var link = document.getElementById("read-more-link");
-            
-            if (content.classList.contains("show")) {
-                content.classList.remove("show");
-                link.innerText = "mehr lesen";
-            } else {
-                content.classList.add("show");
-                link.innerText = "weniger lesen";
-            }
-        }
-    </script>
 
 </body>
-</html>
