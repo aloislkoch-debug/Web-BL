@@ -2,20 +2,23 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detailanalyse: Die Jahre 2016 und 2017</title>
     <style>
+        /* --- SYSTEMWEITE BASIS-STYLINGS --- */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #1a1a1a;
             color: #dcdcdc;
-            padding: 25px;
+            padding: 15px; /* Etwas kompakter auf Smartphones */
             line-height: 1.6;
         }
         h2 { color: #ff4d4d; font-size: 22px; border-bottom: 2px solid #333; padding-bottom: 8px; }
-        h3 { color: #ffffff; font-size: 17px; margin-top: 20px; }
+        h3 { color: #ffffff; font-size: 18px; margin-top: 25px; }
         p { font-size: 15px; }
         ul { padding-left: 20px; }
         li { margin-bottom: 10px; }
+        
         .highlight-box {
             background-color: #242424;
             border-left: 4px solid #ff4d4d;
@@ -23,46 +26,63 @@
             margin: 20px 0;
             font-size: 14px;
         }
-        .evidence-btn {
-            display: inline-block;
-            background-color: #2a2a2a;
-            color: #3399ff;
-            text-decoration: none;
-            padding: 5px 10px;
-            border: 1px solid #3399ff;
-            border-radius: 4px;
-            font-weight: bold;
+        .disclaimer {
+            font-style: italic;
+            color: #888888;
             font-size: 13px;
-            margin-top: 5px;
-            margin-right: 5px;
+        }
+
+        /* --- OPTIMIERTE BUTTONS (MOBILE FIRST) --- */
+        .evidence-btn, .back-btn {
+            display: block; /* Auf Handys: Volle Breite nutzen */
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #2a2a2a;
+            text-decoration: none;
+            padding: 14px 16px; /* Deutlich mehr Klickfläche für Finger */
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 15px; /* Größere, gut lesbare Schrift */
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
             transition: all 0.3s ease;
+        }
+
+        .evidence-btn {
+            color: #3399ff;
+            border: 2px solid #3399ff; /* Dickere Rahmenlinie */
         }
         .evidence-btn:hover {
             background-color: #3399ff;
             color: #1a1a1a;
         }
+
         .back-btn {
-            display: inline-block;
-            background-color: #2a2a2a;
             color: #ff4d4d;
-            text-decoration: none;
-            padding: 6px 12px;
-            border: 1px solid #ff4d4d;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 13px;
-            margin-bottom: 20px;
-            margin-top: 10px;
-            transition: all 0.3s ease;
+            border: 2px solid #ff4d4d;
         }
         .back-btn:hover {
             background-color: #ff4d4d;
             color: #1a1a1a;
         }
-        .disclaimer {
-            font-style: italic;
-            color: #888888;
-            font-size: 13px;
+
+        /* --- ANPASSUNGEN FÜR TABLETS UND PC (Ab 768px) --- */
+        @media (min-width: 768px) {
+            body {
+                padding: 30px; /* Mehr Platz auf großen Bildschirmen */
+            }
+            h2 { font-size: 24px; }
+            h3 { font-size: 19px; }
+            
+            /* Auf dem PC nebeneinander und kompakt darstellen */
+            .evidence-btn, .back-btn {
+                display: inline-block;
+                width: auto;
+                padding: 8px 14px;
+                font-size: 13.5px;
+                margin-right: 8px;
+            }
         }
     </style>
 </head>
@@ -79,7 +99,6 @@
     <div class="highlight-box">
         <strong>Die rechtliche Ausgangslage:</strong><br>
         Mit Bescheid der Agrarbehörde des Landes Tirol aus dem Jahr 2011 wurde rechtskräftig festgestellt, dass die Agrargemeinschaft Natters eine <strong>Gemeindegutsagrargemeinschaft (GGAG)</strong> darstellt. Mit der TFLG-Novelle im Jahr 2014 wurde bestimmt, dass den Mitgliedern nur noch der tatsächliche Haus- und Gutsbedarf zusteht. Der restliche Ertrag („Überling“) gehört der substanzberechtigten Gemeinde.<br>
-        <!--<a class="evidence-btn" href="bescheid_2011.html" target="_self">→ Bescheid 2011 öffnen (Feststellung Gemeindegut)</a> -->
 		<a class="evidence-btn" href="Regulierungsbescheid 2011-07-14.pdf" target="_blank">→ Originalen Regulierungsbescheid öffnen (PDF)</a>
     </div>
 
@@ -111,4 +130,3 @@
     </div>
 
 </body>
-</html>
